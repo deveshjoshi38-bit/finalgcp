@@ -85,9 +85,9 @@ const Home: React.FC = () => {
             playsInline
             className="w-full h-full object-cover opacity-60 scale-105 filter grayscale contrast-125 brightness-75"
           >
-            {/* Using the user-provided local showreel video */}
-            <source src="/hero-video.mov" type="video/quicktime" />
-            <source src="/hero-video.mov" type="video/mp4" />
+            {/* Using the user-provided external GlobeHost video for Vercel compatibility */}
+            <source src="https://girlchildproductions.com/hero-video.mov" type="video/quicktime" />
+            <source src="https://girlchildproductions.com/hero-video.mov" type="video/mp4" />
           </video>
 
           {/* Upbeat Background Music */}
