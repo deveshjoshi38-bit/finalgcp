@@ -19,25 +19,13 @@ const Home: React.FC = () => {
   const [activeVideo, setActiveVideo] = useState<WorkItem | null>(null);
   const [isAudioMuted, setIsAudioMuted] = useState(false); // Default unmuted as requested
 
-  // Video looping logic: 3s to end
+  // Video looping logic: Native loop enabled
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Start from 4s
-    video.currentTime = 4;
+    // Ensure video plays
     video.play().catch(e => console.log("Video play blocked:", e));
-
-    const handleEnded = () => {
-      video.currentTime = 4;
-      video.play();
-    };
-
-    video.addEventListener('ended', handleEnded);
-
-    return () => {
-      video.removeEventListener('ended', handleEnded);
-    };
   }, []);
 
   useEffect(() => {
@@ -81,13 +69,13 @@ const Home: React.FC = () => {
           <video
             ref={videoRef}
             autoPlay
+            loop // Native loop from start to end
             muted // Always muted as we have separate audio control
             playsInline
             className="w-full h-full object-cover opacity-60 scale-105 filter grayscale contrast-125 brightness-75"
           >
-            {/* Using the user-provided external GlobeHost video for Vercel compatibility */}
-            <source src="https://girlchildproductions.com/hero-video.mov" type="video/quicktime" />
-            <source src="https://girlchildproductions.com/hero-video.mov" type="video/mp4" />
+            {/* Using the new local optimized showreel video */}
+            <source src="/hero-video.mp4" type="video/mp4" />
           </video>
 
           {/* Upbeat Background Music */}
