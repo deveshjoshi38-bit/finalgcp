@@ -28,13 +28,36 @@ const Home: React.FC = () => {
     video.play().catch(e => console.log("Video play blocked:", e));
   }, []);
 
+  // Audio Autoplay Logic with Fallback for Browser Policies
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.muted = isAudioMuted;
-      if (!isAudioMuted) {
-        audioRef.current.play().catch(e => console.log("Audio play blocked:", e));
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.muted = isAudioMuted;
+
+    const playAudio = async () => {
+      try {
+        if (!isAudioMuted) {
+          await audio.play();
+          console.log("Audio playing successfully");
+        }
+      } catch (err) {
+        console.log("Autoplay blocked by browser policy, waiting for interaction");
+        // Add one-time listener for interaction
+        const handleInteraction = () => {
+          if (!isAudioMuted) {
+            audio.play().catch(e => console.log("Audio play failed on interaction:", e));
+          }
+          window.removeEventListener('click', handleInteraction);
+          window.removeEventListener('scroll', handleInteraction);
+        };
+
+        window.addEventListener('click', handleInteraction);
+        window.addEventListener('scroll', handleInteraction);
       }
-    }
+    };
+
+    playAudio();
   }, [isAudioMuted]);
 
   // Featured Videos: 1 Doc + 1 TVC
@@ -83,6 +106,7 @@ const Home: React.FC = () => {
             ref={audioRef}
             src="/hero-audio.mp3"
             loop
+            autoPlay
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
