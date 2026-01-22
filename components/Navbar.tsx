@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 
-interface NavbarProps {
-  isMuted: boolean;
-  toggleMute: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ isMuted, toggleMute }) => {
+const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,50 +23,36 @@ const Navbar: React.FC<NavbarProps> = ({ isMuted, toggleMute }) => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <NavLink to="/" className="group" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="flex flex-col leading-none">
-            <span className="text-xl md:text-2xl font-display font-bold tracking-widest text-white group-hover:text-gray-300 transition-colors">
-              GIRL CHILD
-            </span>
-            <span className="text-[10px] md:text-xs font-sans tracking-[0.3em] text-gray-400 uppercase">
-              Productions
-            </span>
-          </div>
+          <img
+            src="/logo.png"
+            alt="Girl Child Productions"
+            className="h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
+          />
         </NavLink>
 
-        <div className="flex items-center space-x-8">
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `text-sm tracking-widest uppercase font-medium transition-colors duration-300 hover:text-white ${isActive ? 'text-white border-b border-white pb-1' : 'text-gray-400'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
-
-          {/* Audio Control */}
-          <button
-            onClick={toggleMute}
-            className="text-white hover:text-gray-300 transition-colors p-2"
-            aria-label={isMuted ? "Unmute Background Music" : "Mute Background Music"}
-          >
-            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-          </button>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-8">
+          {NAV_ITEMS.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `text-sm tracking-widest uppercase font-medium transition-colors duration-300 hover:text-white ${isActive ? 'text-white border-b border-white pb-1' : 'text-gray-400'
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
