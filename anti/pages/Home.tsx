@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, X, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Play, X } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ParallaxImage from '../components/ParallaxImage';
 import RevealTitle from '../components/RevealTitle';
@@ -11,13 +11,11 @@ import { WorkItem } from '../types';
 const Home: React.FC = () => {
   const heroRef = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 1000], [0, 300]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.5]);
 
   const [activeVideo, setActiveVideo] = useState<WorkItem | null>(null);
-  const [isAudioMuted, setIsAudioMuted] = useState(false); // Default unmuted as requested
 
   // Video looping logic: Native loop enabled
   useEffect(() => {
@@ -28,37 +26,7 @@ const Home: React.FC = () => {
     video.play().catch(e => console.log("Video play blocked:", e));
   }, []);
 
-  // Audio Autoplay Logic with Fallback for Browser Policies
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
 
-    audio.muted = isAudioMuted;
-
-    const playAudio = async () => {
-      try {
-        if (!isAudioMuted) {
-          await audio.play();
-          console.log("Audio playing successfully");
-        }
-      } catch (err) {
-        console.log("Autoplay blocked by browser policy, waiting for interaction");
-        // Add one-time listener for interaction
-        const handleInteraction = () => {
-          if (!isAudioMuted) {
-            audio.play().catch(e => console.log("Audio play failed on interaction:", e));
-          }
-          window.removeEventListener('click', handleInteraction);
-          window.removeEventListener('scroll', handleInteraction);
-        };
-
-        window.addEventListener('click', handleInteraction);
-        window.addEventListener('scroll', handleInteraction);
-      }
-    };
-
-    playAudio();
-  }, [isAudioMuted]);
 
   // Featured Videos: 1 Doc + 1 TVC
   const featuredDoc = WORK_ITEMS.find(item => item.id === '9'); // The Big Forkers (Doc)
@@ -101,32 +69,12 @@ const Home: React.FC = () => {
             <source src="/hero-video.mp4" type="video/mp4" />
           </video>
 
-          {/* Upbeat Background Music */}
-          <audio
-            ref={audioRef}
-            src="/hero-audio.mp3"
-            loop
-            autoPlay
-          />
+
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
         </motion.div>
 
-        {/* Audio Toggle Control */}
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          onClick={() => setIsAudioMuted(!isAudioMuted)}
-          className="absolute bottom-10 right-10 z-30 p-4 bg-white/5 backdrop-blur-xl rounded-full text-white border border-white/10 hover:bg-white/20 transition-all group flex items-center gap-3"
-        >
-          {isAudioMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="text-secondary animate-pulse" />}
-          <div className="overflow-hidden w-0 group-hover:w-24 transition-all duration-500 whitespace-nowrap">
-            <span className="text-[10px] uppercase tracking-widest font-bold">
-              {isAudioMuted ? 'Unmute' : 'Muting...'}
-            </span>
-          </div>
-        </motion.button>
+
 
         <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
           <motion.div
