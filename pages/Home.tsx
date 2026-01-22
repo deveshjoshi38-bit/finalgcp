@@ -17,7 +17,6 @@ const Home: React.FC = () => {
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.5]);
 
   const [activeVideo, setActiveVideo] = useState<WorkItem | null>(null);
-  const [isAudioMuted, setIsAudioMuted] = useState(false); // Default unmuted as requested
 
   // Video looping logic: Native loop enabled
   useEffect(() => {
@@ -101,32 +100,12 @@ const Home: React.FC = () => {
             <source src="/hero-video.mp4" type="video/mp4" />
           </video>
 
-          {/* Upbeat Background Music */}
-          <audio
-            ref={audioRef}
-            src="/hero-audio.mp3"
-            loop
-            autoPlay
-          />
+
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
         </motion.div>
 
-        {/* Audio Toggle Control */}
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          onClick={() => setIsAudioMuted(!isAudioMuted)}
-          className="absolute bottom-10 right-10 z-30 p-4 bg-white/5 backdrop-blur-xl rounded-full text-white border border-white/10 hover:bg-white/20 transition-all group flex items-center gap-3"
-        >
-          {isAudioMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="text-secondary animate-pulse" />}
-          <div className="overflow-hidden w-0 group-hover:w-24 transition-all duration-500 whitespace-nowrap">
-            <span className="text-[10px] uppercase tracking-widest font-bold">
-              {isAudioMuted ? 'Unmute' : 'Muting...'}
-            </span>
-          </div>
-        </motion.button>
+
 
         <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
           <motion.div
@@ -206,8 +185,8 @@ const Home: React.FC = () => {
               transition={{ duration: 1 }}
             >
               <ParallaxImage
-                src="/founder.jpg"
-                alt="Charnamrit Sachdeva - Founder"
+                src="/studio-image.jpg"
+                alt="The Studio"
                 aspectRatio="aspect-[4/5]"
               />
             </motion.div>
