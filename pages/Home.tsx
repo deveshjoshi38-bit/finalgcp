@@ -364,7 +364,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION 5: WHY US */}
-      <section className="py-24 bg-surface text-white">
+      <section className="py-24 bg-background text-white border-t border-neutral-900">
         <div className="container mx-auto px-6">
           <SectionHeading title="Why Girl Child Productions" subtitle="The Difference" alignment="left" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
@@ -385,7 +385,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION 10: CLIENTS */}
-      <section className="py-20 bg-background overflow-hidden border-t border-neutral-900">
+      <section className="py-20 bg-surface overflow-hidden border-t border-neutral-900">
         <div className="container mx-auto px-6 mb-12 text-center">
           <span className="text-xs font-sans uppercase tracking-[0.25em] text-gray-600">Trusted By</span>
         </div>
