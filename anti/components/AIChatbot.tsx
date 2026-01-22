@@ -161,130 +161,129 @@ const AIChatbot: React.FC = () => {
             }, 800);
         }
         setIsTyping(false);
-    }
-};
+    };
 
-return (
-    <div className="fixed bottom-6 right-6 z-[9999] font-sans">
-        <AnimatePresence>
-            {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                    className="absolute bottom-20 right-0 w-[350px] md:w-[400px] h-[500px] bg-neutral-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-                >
-                    {/* Header */}
-                    <div className="p-4 bg-gradient-to-r from-neutral-800 to-neutral-900 border-b border-white/5 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center border border-secondary/30">
-                                <Bot className="text-secondary w-6 h-6" />
-                            </div>
-                            <div>
-                                <h3 className="text-white font-serif text-sm font-bold">GCP Assistant</h3>
-                                <p className="text-[10px] text-green-400 uppercase tracking-widest flex items-center gap-1">
-                                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" /> Online
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            className="text-gray-400 hover:text-white transition-colors"
-                        >
-                            <X size={20} />
-                        </button>
-                    </div>
-
-                    {/* Messages */}
-                    <div
-                        ref={scrollRef}
-                        className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar"
+    return (
+        <div className="fixed bottom-6 right-6 z-[9999] font-sans">
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                        className="absolute bottom-20 right-0 w-[350px] md:w-[400px] h-[500px] bg-neutral-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
                     >
-                        {messages.map((msg) => (
-                            <div
-                                key={msg.id}
-                                className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                            >
-                                <div className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${msg.sender === 'user'
-                                    ? 'bg-white text-black rounded-tr-none'
-                                    : 'bg-neutral-800 text-gray-200 rounded-tl-none border border-white/5'
-                                    }`}>
-                                    {msg.text}
+                        {/* Header */}
+                        <div className="p-4 bg-gradient-to-r from-neutral-800 to-neutral-900 border-b border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center border border-secondary/30">
+                                    <Bot className="text-secondary w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="text-white font-serif text-sm font-bold">GCP Assistant</h3>
+                                    <p className="text-[10px] text-green-400 uppercase tracking-widest flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" /> Online
+                                    </p>
                                 </div>
                             </div>
-                        ))}
-                        {isTyping && (
-                            <div className="flex justify-start">
-                                <div className="bg-neutral-800 text-gray-400 p-3 rounded-2xl rounded-tl-none border border-white/5 flex gap-1">
-                                    <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" />
-                                    <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]" />
-                                    <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.4s]" />
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Input */}
-                    <div className="p-4 border-t border-white/5 bg-neutral-900/50">
-                        <div className="relative flex items-center">
-                            <input
-                                type="text"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                                placeholder="Ask me anything about GCP..."
-                                className="w-full bg-neutral-800 border border-white/10 rounded-full py-3 px-5 pr-12 text-sm text-white focus:outline-none focus:border-secondary transition-all placeholder-gray-500"
-                            />
                             <button
-                                onClick={handleSend}
-                                className="absolute right-2 w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+                                onClick={() => setIsOpen(false)}
+                                className="text-gray-400 hover:text-white transition-colors"
                             >
-                                <Send size={14} />
+                                <X size={20} />
                             </button>
                         </div>
-                        <p className="text-[10px] text-gray-600 text-center mt-3 uppercase tracking-[0.2em]">
-                            <a href="tel:+919198683854" className="hover:text-white transition-colors duration-300">&nbsp;Created&nbsp; By&nbsp; Devesh&nbsp; Joshi</a>
-                        </p>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
 
-        <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-16 h-16 bg-white text-black rounded-full shadow-2xl flex items-center justify-center border border-black/5 relative group"
-        >
-            <AnimatePresence mode="wait">
-                {isOpen ? (
-                    <motion.div
-                        key="close"
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                    >
-                        <X size={24} />
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="open"
-                        initial={{ rotate: 90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: -90, opacity: 0 }}
-                    >
-                        <MessageSquare size={24} />
+                        {/* Messages */}
+                        <div
+                            ref={scrollRef}
+                            className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar"
+                        >
+                            {messages.map((msg) => (
+                                <div
+                                    key={msg.id}
+                                    className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                                >
+                                    <div className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${msg.sender === 'user'
+                                        ? 'bg-white text-black rounded-tr-none'
+                                        : 'bg-neutral-800 text-gray-200 rounded-tl-none border border-white/5'
+                                        }`}>
+                                        {msg.text}
+                                    </div>
+                                </div>
+                            ))}
+                            {isTyping && (
+                                <div className="flex justify-start">
+                                    <div className="bg-neutral-800 text-gray-400 p-3 rounded-2xl rounded-tl-none border border-white/5 flex gap-1">
+                                        <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" />
+                                        <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]" />
+                                        <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.4s]" />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Input */}
+                        <div className="p-4 border-t border-white/5 bg-neutral-900/50">
+                            <div className="relative flex items-center">
+                                <input
+                                    type="text"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                    placeholder="Ask me anything about GCP..."
+                                    className="w-full bg-neutral-800 border border-white/10 rounded-full py-3 px-5 pr-12 text-sm text-white focus:outline-none focus:border-secondary transition-all placeholder-gray-500"
+                                />
+                                <button
+                                    onClick={handleSend}
+                                    className="absolute right-2 w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+                                >
+                                    <Send size={14} />
+                                </button>
+                            </div>
+                            <p className="text-[10px] text-gray-600 text-center mt-3 uppercase tracking-[0.2em]">
+                                <a href="tel:+919198683854" className="hover:text-white transition-colors duration-300">&nbsp;Created&nbsp; By&nbsp; Devesh&nbsp; Joshi</a>
+                            </p>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Pulsing Ring */}
-            {!isOpen && (
-                <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping group-hover:hidden" />
-            )}
-        </motion.button>
-    </div>
-);
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-16 h-16 bg-white text-black rounded-full shadow-2xl flex items-center justify-center border border-black/5 relative group"
+            >
+                <AnimatePresence mode="wait">
+                    {isOpen ? (
+                        <motion.div
+                            key="close"
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                        >
+                            <X size={24} />
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="open"
+                            initial={{ rotate: 90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: -90, opacity: 0 }}
+                        >
+                            <MessageSquare size={24} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Pulsing Ring */}
+                {!isOpen && (
+                    <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping group-hover:hidden" />
+                )}
+            </motion.button>
+        </div>
+    );
 };
 
 export default AIChatbot;
