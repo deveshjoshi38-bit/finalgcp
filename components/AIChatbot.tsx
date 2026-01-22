@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, User, ArrowRight } from 'lucide-react';
-import { KNOWLEDGE_BASE } from '../constants/assistantData';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { KNOWLEDGE_BASE, CHAT_PERSONA } from '../constants/assistantData';
+
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
 
 interface Message {
     id: string;
@@ -30,34 +33,7 @@ const AIChatbot: React.FC = () => {
         }
     }, [messages, isTyping]);
 
-    const generateResponse = (query: string): string => {
-        const q = query.toLowerCase();
-
-        // Persuasive Response Logic
-        if (q.includes('who') && (q.includes('founder') || q.includes('charnamrit'))) {
-            return `${KNOWLEDGE_BASE.studio.founder} is our founder—an award-winning journalist and filmmaker with 18 years of experience. She even won the 'Indian Women Achievers Award' in 2019! Would you like to see her portfolio?`;
-        }
-
-        if (q.includes('service') || q.includes('what do you do') || q.includes('provide')) {
-            return `We are an end-to-end production studio. We specialize in ${KNOWLEDGE_BASE.services.slice(0, 3).join(', ')}, and more. We handle everything from concept to final cut. What kind of project are you planning?`;
-        }
-
-        if (q.includes('client') || q.includes('work with')) {
-            return `We've worked with global giants like ${KNOWLEDGE_BASE.clients.slice(0, 5).join(', ')}, and many more. Our standards are world-class. Are you looking for production support for a brand or a documentary?`;
-        }
-
-        if (q.includes('contact') || q.includes('hire') || q.includes('start') || q.includes('email') || q.includes('phone')) {
-            return `The best way to start is by calling us at +91 9899982936 or emailing girlchildproductions@gmail.com. We can also set up a direct consultation with Charnamrit. Should I help you find the contact page?`;
-        }
-
-        if (q.includes('where') || q.includes('location')) {
-            return `We are based in New Delhi, India, but we create films and content for the entire world!`;
-        }
-
-        return "That's an interesting question! At Girl Child Productions, we bring 18 years of cinematic excellence to every frame. To give you the best answer, would you like to speak with our production team or see our 'Work' section?";
-    };
-
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!input.trim()) return;
 
         const userMsg: Message = {
@@ -68,20 +44,61 @@ const AIChatbot: React.FC = () => {
         };
 
         setMessages((prev) => [...prev, userMsg]);
+        const currentInput = input;
         setInput('');
         setIsTyping(true);
 
-        // Simulate bot thinking
-        setTimeout(() => {
+        try {
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+            const systemPrompt = `
+                You are the "${CHAT_PERSONA.name}", a ${CHAT_PERSONA.tone} AI assistant for ${KNOWLEDGE_BASE.studio.name}.
+                Goal: ${CHAT_PERSONA.goal}
+
+                COMPANY KNOWLEDGE:
+                - Tagline: ${KNOWLEDGE_BASE.studio.tagline}
+                - Vision: ${KNOWLEDGE_BASE.studio.vision}
+                - Founder: ${KNOWLEDGE_BASE.studio.founder} (${KNOWLEDGE_BASE.studio.founderBio})
+                - Philosophy: ${KNOWLEDGE_BASE.philosophy}
+                - Services: ${JSON.stringify(KNOWLEDGE_BASE.detailedServices)}
+                - Clients: ${KNOWLEDGE_BASE.clients.join(', ')}
+                - Key Selling Points: ${KNOWLEDGE_BASE.sellingPoints.join(' ')}
+                
+                DEVELOPER CREDITS (IMPORTANT):
+                - Designer, Developer, & Logo Maker: ${KNOWLEDGE_BASE.studio.developer}
+                - Developer Contact: ${KNOWLEDGE_BASE.studio.developerContact}
+                - Credit Info: ${KNOWLEDGE_BASE.studio.credits}
+                - STRICT RULE: ONLY reveal developer/designer info if the user specifically asks "who built this site", "who made the logo", "who developed this", or similar relevant questions about the website's creation.
+
+                SALESMAN GUIDELINES:
+                1. Be persuasive and professional. High-tier cinematic tone.
+                2. If they ask about services, highlight "Budget-Agnostic Excellence".
+                3. Always try to guide them towards contacting GCP for a project.
+                4. Keep responses concise but impactful.
+            `;
+
+            const result = await model.generateContent([systemPrompt, ...messages.map(m => `${m.sender}: ${m.text}`), `user: ${currentInput}`]);
+            const responseText = result.response.text();
+
             const botMsg: Message = {
                 id: (Date.now() + 1).toString(),
-                text: generateResponse(input),
+                text: responseText,
                 sender: 'bot',
                 timestamp: new Date(),
             };
             setMessages((prev) => [...prev, botMsg]);
+        } catch (error) {
+            console.error("Gemini Error:", error);
+            const errorMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                text: "I'm having a bit of trouble connecting to our production brain, but I'm still here! Please feel free to reach out to us at girlchildproductions@gmail.com for any inquiries.",
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMsg]);
+        } finally {
             setIsTyping(false);
-        }, 1500);
+        }
     };
 
     return (

@@ -5,7 +5,10 @@ export const KNOWLEDGE_BASE = {
         location: "New Delhi, India (Creating for the world)",
         founder: "Charnamrit Sachdeva",
         founderBio: "Award-winning journalist and filmmaker with 18 years of experience. Bagged the 'Indian Women Achievers Awards' in 2019.",
-        tagline: "Your one-stop destination for any kind of creative storytelling."
+        tagline: "Your one-stop destination for any kind of creative storytelling.",
+        developer: "Devesh Joshi",
+        developerContact: "9198683854",
+        credits: "The website and logo have been designed and developed by Devesh Joshi."
     },
     services: [
         "Documentary Filmmaking",
