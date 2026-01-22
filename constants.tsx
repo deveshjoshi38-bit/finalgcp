@@ -181,3 +181,18 @@ export const WHY_US_POINTS = [
   { title: 'Creative Agility', desc: 'From rapid social content to feature-length documentaries.' },
   { title: 'End-to-End Production', desc: 'Pre-production, shooting, post-production, and distribution strategy.' },
 ];
+
+export const FEATURED_JOURNALISM = [
+  {
+    title: "Justice for Jyoti Singh: A Mother's Long Wait",
+    summary: "The story chronicles the long battle for justice by the parents of Jyoti Singh, whose brutal gang rape in New Delhi sparked global outrage.",
+    imageUrl: "https://www.telegraph.co.uk/content/dam/women/2020/03/20/TELEMMGLPICT000228214832_trans_NvBQzQNjv4BqSw1JcONncIvdV_EnjsnkAgzDvZHoxG5Pk01xSfGx6lA.jpeg?impolicy=OG-Standard",
+    link: "https://www.telegraph.co.uk/women/life/new-delhi-gang-rape-mother-better-daughter-died-have-wait-7/"
+  },
+  {
+    title: "The Slumdog Seamstress & The Royal Dress",
+    summary: "Babita Sabath, a Mumbai seamstress earning £3 a day, unknowingly crafted a dress worn by the Duchess of Cambridge, which became an instant global sensation.",
+    imageUrl: "https://i.dailymail.co.uk/i/pix/2016/04/13/08/3320F21700000578-0-image-a-18_1460532808317.jpg",
+    link: "https://www.dailymail.co.uk/news/article-3536608/I-don-t-know-Kate-Slumdog-Seamstress-makes-3-day-stitching-Duchess-Cambridge-s-140-boho-frock-Mumbai-never-heard-her.html"
+  }
+];

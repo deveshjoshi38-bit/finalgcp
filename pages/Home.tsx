@@ -5,7 +5,7 @@ import { ArrowRight, Play, X, Volume2, VolumeX } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ParallaxImage from '../components/ParallaxImage';
 import RevealTitle from '../components/RevealTitle';
-import { SERVICES_DATA, WHY_US_POINTS, CLIENT_LOGOS, WORK_ITEMS } from '../constants';
+import { SERVICES_DATA, WHY_US_POINTS, CLIENT_LOGOS, WORK_ITEMS, FEATURED_JOURNALISM } from '../constants';
 import { WorkItem } from '../types';
 
 const Home: React.FC = () => {
@@ -296,6 +296,68 @@ const Home: React.FC = () => {
           <div className="mt-8 text-center md:hidden">
             <Link to="/work" className="inline-flex items-center text-sm uppercase tracking-widest text-white border-b border-white pb-1">
               Full Portfolio <ArrowRight size={16} className="ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4.5: FEATURED JOURNALISM */}
+      <section className="py-24 bg-surface border-t border-neutral-900">
+        <div className="container mx-auto px-6">
+          <SectionHeading title="Impactful Journalism" subtitle="Global Stories" alignment="left" className="mb-12" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {FEATURED_JOURNALISM.map((story, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className="group flex flex-col h-full"
+              >
+                <a
+                  href={story.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative overflow-hidden aspect-video mb-6"
+                >
+                  <ParallaxImage
+                    src={story.imageUrl}
+                    alt={story.title}
+                    className="grayscale group-hover:grayscale-0 transition-all duration-700"
+                    aspectRatio="aspect-video"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                  <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <ArrowRight size={16} className="text-white -rotate-45" />
+                  </div>
+                </a>
+
+                <h3 className="text-2xl font-serif text-white mb-4 group-hover:text-gray-300 transition-colors">
+                  {story.title}
+                </h3>
+                <p className="text-gray-400 font-light leading-relaxed mb-6 flex-grow">
+                  {story.summary}
+                </p>
+
+                <div className="flex items-center gap-6 mt-auto">
+                  <a
+                    href={story.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs uppercase tracking-widest text-white border-b border-white/30 pb-1 hover:border-white transition-colors"
+                  >
+                    Read Article
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link to="/about" className="inline-flex items-center px-8 py-3 border border-neutral-700 text-gray-300 text-xs uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+              View All News <ArrowRight size={14} className="ml-2" />
             </Link>
           </div>
         </div>
