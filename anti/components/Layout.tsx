@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import AIChatbot from './AIChatbot';
+import AudioControl from './AudioControl';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,14 +20,11 @@ const pageVariants = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
 
-  // Scroll to top on route change
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
+  // No scroll reset here - handled by SmoothScroll with Lenis
   return (
     <div className="min-h-screen bg-background text-primary font-sans selection:bg-white selection:text-black flex flex-col relative">
       <Navbar />
+      <AudioControl />
       <main className="flex-grow">
         {children}
       </main>

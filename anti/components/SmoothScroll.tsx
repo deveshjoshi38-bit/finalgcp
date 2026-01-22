@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
@@ -7,6 +8,9 @@ interface SmoothScrollProps {
 }
 
 const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
+    const location = useLocation();
+    const lenisRef = useRef<Lenis | null>(null);
+
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -15,6 +19,8 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
             gestureOrientation: 'vertical',
             smoothWheel: true,
         });
+
+        lenisRef.current = lenis;
 
         function raf(time: number) {
             lenis.raf(time);
@@ -25,8 +31,18 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
         return () => {
             lenis.destroy();
+            lenisRef.current = null;
         };
     }, []);
+
+    // Scroll to top on route change using Lenis
+    useEffect(() => {
+        if (lenisRef.current) {
+            lenisRef.current.scrollTo(0, { immediate: true });
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [location.pathname]);
 
     return <>{children}</>;
 };
