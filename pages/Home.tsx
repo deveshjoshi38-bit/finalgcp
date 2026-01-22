@@ -206,8 +206,8 @@ const Home: React.FC = () => {
               transition={{ duration: 1 }}
             >
               <ParallaxImage
-                src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80"
-                alt="Filming on set"
+                src="/founder.jpg"
+                alt="Charnamrit Sachdeva - Founder"
                 aspectRatio="aspect-[4/5]"
               />
             </motion.div>
