@@ -19,9 +19,9 @@ const Home: React.FC = () => {
             playsInline
             className="w-full h-full object-cover opacity-60 scale-105"
           >
-             {/* Using a high quality stock abstract video link that fits the vibe */}
+            {/* Using a high quality stock abstract video link that fits the vibe */}
             <source src="https://cdn.coverr.co/videos/coverr-film-set-production-5250/1080p.mp4" type="video/mp4" />
-             {/* Fallback image */}
+            {/* Fallback image */}
             <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" className="w-full h-full object-cover" alt="Hero Background" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
             >
               <SectionHeading title="The Studio" subtitle="Who We Are" />
               <p className="text-gray-400 text-lg leading-relaxed mb-6 font-light">
-                Girl Child Productions (GCP) is the brainchild of award-winning journalist and filmmaker <strong className="text-white font-medium">Charnamrit Sachdeva</strong>. 
+                Girl Child Productions (GCP) is the brainchild of award-winning journalist and filmmaker <strong className="text-white font-medium">Charnamrit Sachdeva</strong>.
               </p>
               <p className="text-gray-400 text-lg leading-relaxed mb-8 font-light">
                 With a dynamic team of experienced professionals, we specialize in a wide range of fiction and non-fiction films. From documentaries to digital advertisements, TVCs, short films, and animation, GCP ensures diversity and vibrancy in every project. We are your one-stop solution where budget meets premium quality.
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
               className="relative aspect-[4/5] overflow-hidden"
             >
               <img
-                src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80"
+                src="/studio-image.jpg"
                 alt="Filming on set"
                 className="w-full h-full object-cover opacity-80"
               />
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
                 <ul className="text-sm text-gray-500 space-y-2">
                   {service.items.slice(0, 3).map((item) => (
                     <li key={item} className="flex items-start">
-                       <span className="mr-2 opacity-50">•</span> {item}
+                      <span className="mr-2 opacity-50">•</span> {item}
                     </li>
                   ))}
                 </ul>
@@ -141,18 +141,18 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.6 }}
-               className="group relative aspect-video overflow-hidden cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group relative aspect-video overflow-hidden cursor-pointer"
             >
               {/* Distinct cinematic image for Voices of the Valley */}
               <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0" alt="Work 1" />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <Play className="fill-white text-white ml-1" />
-                  </div>
+                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <Play className="fill-white text-white ml-1" />
+                </div>
               </div>
               <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-black to-transparent">
                 <p className="text-xs uppercase tracking-widest text-gray-300 mb-1">Documentary</p>
@@ -161,18 +161,18 @@ const Home: React.FC = () => {
             </motion.div>
 
             <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.6, delay: 0.2 }}
-               className="group relative aspect-video overflow-hidden cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group relative aspect-video overflow-hidden cursor-pointer"
             >
-               {/* Distinct cinematic image for Urban Rhythm - different from Hero fallback */}
+              {/* Distinct cinematic image for Urban Rhythm - different from Hero fallback */}
               <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0" alt="Work 2" />
-               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <Play className="fill-white text-white ml-1" />
-                  </div>
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <Play className="fill-white text-white ml-1" />
+                </div>
               </div>
               <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-black to-transparent">
                 <p className="text-xs uppercase tracking-widest text-gray-300 mb-1">Brand Film</p>
@@ -180,7 +180,7 @@ const Home: React.FC = () => {
               </div>
             </motion.div>
           </div>
-           <div className="mt-8 text-center md:hidden">
+          <div className="mt-8 text-center md:hidden">
             <Link to="/work" className="inline-flex items-center text-sm uppercase tracking-widest text-white border-b border-white pb-1">
               Full Portfolio <ArrowRight size={16} className="ml-2" />
             </Link>
@@ -191,43 +191,43 @@ const Home: React.FC = () => {
       {/* SECTION 5: WHY US */}
       <section className="py-24 bg-surface text-white">
         <div className="container mx-auto px-6">
-           <SectionHeading title="Why Girl Child Productions" subtitle="The Difference" alignment="left" />
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
-              {WHY_US_POINTS.map((point, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <h4 className="text-xl font-serif mb-3 text-white">{point.title}</h4>
-                  <p className="text-gray-400 font-light leading-relaxed">{point.desc}</p>
-                </motion.div>
-              ))}
-           </div>
+          <SectionHeading title="Why Girl Child Productions" subtitle="The Difference" alignment="left" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
+            {WHY_US_POINTS.map((point, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <h4 className="text-xl font-serif mb-3 text-white">{point.title}</h4>
+                <p className="text-gray-400 font-light leading-relaxed">{point.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* SECTION 10: CLIENTS */}
       <section className="py-20 bg-background overflow-hidden border-t border-neutral-900">
         <div className="container mx-auto px-6 mb-12 text-center">
-            <span className="text-xs font-sans uppercase tracking-[0.25em] text-gray-600">Trusted By</span>
+          <span className="text-xs font-sans uppercase tracking-[0.25em] text-gray-600">Trusted By</span>
         </div>
-        
+
         {/* Infinite Scroll Marquee Effect */}
         <div className="relative w-full overflow-hidden">
-            <motion.div 
-              className="flex whitespace-nowrap space-x-16 px-4"
-              animate={{ x: [0, -2000] }}
-              transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
-            >
-              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, idx) => (
-                <span key={`${client}-${idx}`} className="text-2xl md:text-3xl font-display text-neutral-600 uppercase tracking-widest shrink-0 hover:text-white transition-colors cursor-default">
-                  {client}
-                </span>
-              ))}
-            </motion.div>
+          <motion.div
+            className="flex whitespace-nowrap space-x-16 px-4"
+            animate={{ x: [0, -2000] }}
+            transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+          >
+            {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, idx) => (
+              <span key={`${client}-${idx}`} className="text-2xl md:text-3xl font-display text-neutral-600 uppercase tracking-widest shrink-0 hover:text-white transition-colors cursor-default">
+                {client}
+              </span>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -241,7 +241,7 @@ const Home: React.FC = () => {
           className="relative z-10"
         >
           <h2 className="text-4xl md:text-6xl font-serif text-white mb-8">
-            Let's Create Something <br/> Meaningful.
+            Let's Create Something <br /> Meaningful.
           </h2>
           <Link to="/contact" className="inline-block px-10 py-5 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
             Start Your Story With Us
