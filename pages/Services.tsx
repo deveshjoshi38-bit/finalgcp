@@ -13,14 +13,8 @@ const Services: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <h1 className="text-5xl md:text-7xl font-serif mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-200">Our Services</h1>
-          <p className="text-gray-400 font-light text-lg mb-8">Comprehensive production solutions tailored for brands, agencies, and broadcasters worldwide.</p>
-          <motion.div
-            initial={{ scaleX: 0, originX: 0.5 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-1 w-24 md:w-32 bg-white mx-auto"
-          />
+           <h1 className="text-5xl md:text-7xl font-serif text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-200">Our Services</h1>
+           <p className="text-gray-400 font-light text-lg">Comprehensive production solutions tailored for brands, agencies, and broadcasters worldwide.</p>
         </motion.div>
 
         <div className="space-y-32">
@@ -46,10 +40,10 @@ const Services: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
+                
                 <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
                   {service.items.map((item, i) => (
-                    <motion.div
+                    <motion.div 
                       key={item}
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}

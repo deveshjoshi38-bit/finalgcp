@@ -8,16 +8,19 @@ const Footer: React.FC = () => {
     <footer className="bg-surface pt-20 pb-10 border-t border-neutral-900">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-
+          
           {/* Brand */}
           <div className="md:col-span-1">
-            <img
-              src="/logo.png"
-              alt="Girl Child Productions"
-              className="h-20 w-auto object-contain mb-6"
-            />
+             <div className="flex flex-col leading-none mb-6">
+              <span className="text-xl font-display font-bold tracking-widest text-white">
+                GIRL CHILD
+              </span>
+              <span className="text-[10px] font-sans tracking-[0.3em] text-gray-500 uppercase">
+                Productions
+              </span>
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Stories That Move. Films That Matter. <br />
+              Stories That Move. Films That Matter. <br/>
               Based in New Delhi, creating for the world.
             </p>
           </div>
@@ -62,8 +65,17 @@ const Footer: React.FC = () => {
               <a href={CONTACT_INFO.socials.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300">
                 <Instagram size={18} />
               </a>
+              <a href={CONTACT_INFO.socials.facebook} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300">
+                <Facebook size={18} />
+              </a>
+              <a href={CONTACT_INFO.socials.twitter} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300">
+                <Twitter size={18} />
+              </a>
               <a href={CONTACT_INFO.socials.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300">
                 <Linkedin size={18} />
+              </a>
+              <a href={CONTACT_INFO.socials.youtube} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300">
+                <Youtube size={18} />
               </a>
             </div>
           </div>

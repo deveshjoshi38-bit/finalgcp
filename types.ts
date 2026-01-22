@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface NavItem {
   label: string;
   path: string;
@@ -18,7 +16,6 @@ export interface WorkItem {
   image: string;
   year?: string;
   client?: string;
-  videoUrl?: string;
 }
 
 export interface Client {
