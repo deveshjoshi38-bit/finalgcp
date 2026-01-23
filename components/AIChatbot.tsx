@@ -32,7 +32,7 @@ const generateFallbackResponse = (query: string): string => {
 
     // Services
     if (q.includes('service') || q.includes('what do you do') || q.includes('provide') || q.includes('offer')) {
-        return `We deliver **Budget-Agnostic Excellence** across:\n• Documentaries & Digital Films\n• TVCs & Brand Films\n• Animation (2D/3D) & Motion Graphics\n• Web Series & Short Films\n• Artist Management & PR\n\nFrom concept to final cut, we make your vision cinematic. What kind of project are you planning?`;
+        return `We deliver **Budget-Agnostic Excellence** across:\n• Documentaries & Digital Films\n• TVCs & Brand Films\n• News/Video Stories\n• Animation (2D/3D) & Motion Graphics\n• Web Series & Short Films\n• Jingles & Sound Design\n• Artist Management & PR\n• Digital Marketing\n\nFrom concept to final cut, we make your vision cinematic. What kind of project are you planning?`;
     }
 
     // Clients
@@ -42,7 +42,7 @@ const generateFallbackResponse = (query: string): string => {
 
     // Contact
     if (q.includes('contact') || q.includes('hire') || q.includes('start') || q.includes('email') || q.includes('phone') || q.includes('call')) {
-        return `Ready to create something extraordinary? Reach us at:\n📞 +91 9899982936\n✉️ girlchildproductions@gmail.com\n\nOur founder Charnamrit is always excited to discuss new projects!`;
+        return `Ready to create something extraordinary? Reach us at:\n📞 ${KNOWLEDGE_BASE.contactInfo.phone}\n✉️ ${KNOWLEDGE_BASE.contactInfo.email}\n\nOur founder Charnamrit is always excited to discuss new projects!`;
     }
 
     // Location
@@ -111,6 +111,7 @@ const AIChatbot: React.FC = () => {
                     - Services: ${JSON.stringify(KNOWLEDGE_BASE.detailedServices)}
                     - Clients: ${KNOWLEDGE_BASE.clients.join(', ')}
                     - Key Selling Points: ${KNOWLEDGE_BASE.sellingPoints.join(' ')}
+                    - CONTACT INFORMATION: ${JSON.stringify(KNOWLEDGE_BASE.contactInfo)}
                     
                     DEVELOPER CREDITS (IMPORTANT):
                     - Designer, Developer, & Logo Maker: ${KNOWLEDGE_BASE.studio.developer}

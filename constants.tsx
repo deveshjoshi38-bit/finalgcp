@@ -11,25 +11,25 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const CONTACT_INFO = {
-  phone: '+91 98999829363',
+  phone: '+919899829363',
   email: 'girlchildproductions@gmail.com',
   location: 'New Delhi, India',
   socials: {
     instagram: 'https://www.instagram.com/girlchildproductions',
     linkedin: 'https://www.linkedin.com/in/charnamrit-sachdeva-3b216826/',
-    whatsapp: 'https://wa.me/919899982936'
+    whatsapp: 'https://wa.me/919899829363'
   }
 };
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
     category: 'Filmmaking & Production',
-    items: ['Documentary Filmmaking', 'Digital Films', 'TVCs (Television Commercials)', 'Web Series', 'Short Films', 'Line Production'],
+    items: ['Documentary Filmmaking', 'Digital Films', 'TVCs (Television Commercials)', 'Web Series', 'Short Films', 'Line Production', 'News/Video Stories'],
     icon: <Film className="w-6 h-6" />,
   },
   {
     category: 'Animation & Graphics',
-    items: ['2D Animated Videos', '3D Animated Videos', 'Explanatory Videos', 'Motion Graphics', 'Visual Effects'],
+    items: ['2D Animated Videos', '3D Animated Videos', 'Explanatory Videos', 'Motion Graphics'],
     icon: <Layers className="w-6 h-6" />,
   },
   {
@@ -44,12 +44,12 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     category: 'Audio & Media',
-    items: ['Podcasts', 'Sound Design', 'Voiceovers'],
+    items: ['Podcasts', 'Sound Design', 'Voiceovers', 'Jingles'],
     icon: <Mic className="w-6 h-6" />,
   },
   {
     category: 'Management & Strategy',
-    items: ['Artist Management', 'Line Production', 'Digital Marketing Strategy', 'Public Relations'],
+    items: ['Artist Management', 'Line Production', 'Digital Marketing', 'Public Relations'],
     icon: <Users className="w-6 h-6" />,
   },
 ];
@@ -160,6 +160,87 @@ export const WORK_ITEMS: WorkItem[] = [
     image: 'https://img.youtube.com/vi/XTUq3G5fyvE/maxresdefault.jpg',
     year: '2023',
     videoUrl: 'https://www.youtube.com/watch?v=XTUq3G5fyvE',
+  },
+  // Journalism & Press Stories
+  {
+    id: '14',
+    title: "Justice for Jyoti Singh: A Mother's Long Wait",
+    category: 'Journalism & Press',
+    image: 'https://www.telegraph.co.uk/content/dam/women/2020/03/20/TELEMMGLPICT000228214832_trans_NvBQzQNjv4BqSw1JcONncIvdV_EnjsnkAgzDvZHoxG5Pk01xSfGx6lA.jpeg?impolicy=OG-Standard',
+    year: '2020',
+    videoUrl: 'https://www.telegraph.co.uk/women/life/new-delhi-gang-rape-mother-better-daughter-died-have-wait-7/',
+  },
+  {
+    id: '15',
+    title: 'The Tragic Reality of Abandoned Daughters',
+    category: 'Journalism & Press',
+    image: 'https://i2-prod.mirror.co.uk/article10889844.ece/ALTERNATES/s1200/EMB-PAY-PROD-CAP_330670_01.jpg',
+    year: '2017',
+    videoUrl: 'https://www.mirror.co.uk/news/world-news/dumped-doorstep-thousands-baby-girls-10896056',
+  },
+  {
+    id: '16',
+    title: "Living with Progeria: A Child's Struggle",
+    category: 'Journalism & Press',
+    image: 'https://i2-prod.mirror.co.uk/article8522185.ece/ALTERNATES/s1200/PAY-Bayezid-Hossain.jpg',
+    year: '2016',
+    videoUrl: 'https://www.mirror.co.uk/news/world-news/inside-world-four-year-old-8522318',
+  },
+  {
+    id: '17',
+    title: 'Empowerment Through Sport: Child Brides on the Pitch',
+    category: 'Journalism & Press',
+    image: 'https://i2-prod.mirror.co.uk/article12201339.ece/ALTERNATES/s1200f/EMB-PAY-PROD-SUNDAY-CAP_330792_32.jpg',
+    year: '2018',
+    videoUrl: 'https://www.mirror.co.uk/news/world-news/child-brides-united-football-team-12205210',
+  },
+  {
+    id: '18',
+    title: "Teen Survivor of 'Honour' Attack: A Fight for Life",
+    category: 'Journalism & Press',
+    image: 'https://i.dailymail.co.uk/i/pix/2017/05/12/12/403BC9CE00000578-0-image-a-17_1494590389991.jpg',
+    year: '2017',
+    videoUrl: 'https://www.dailymail.co.uk/news/article-4499600/Girl-fights-life-father-brother-shot-her.html',
+  },
+  {
+    id: '19',
+    title: "Betrayed by Blood: A Widow's Vow for Justice",
+    category: 'Journalism & Press',
+    image: 'https://i.dailymail.co.uk/i/pix/2016/04/21/12/33662BCE00000578-0-image-a-3_1461239115384.jpg',
+    year: '2016',
+    videoUrl: 'https://www.dailymail.co.uk/news/article-3551521/Dad-murdered-husband-tried-kill-want-dead-Extraordinary-bravery-tragic-honour-killing-victim-wants-father-sentenced-death.html',
+  },
+  {
+    id: '20',
+    title: 'The Slumdog Seamstress & The Royal Dress',
+    category: 'Journalism & Press',
+    image: 'https://i.dailymail.co.uk/i/pix/2016/04/13/08/3320F21700000578-0-image-a-18_1460532808317.jpg',
+    year: '2016',
+    videoUrl: 'https://www.dailymail.co.uk/news/article-3536608/I-don-t-know-Kate-Slumdog-Seamstress-makes-3-day-stitching-Duchess-Cambridge-s-140-boho-frock-Mumbai-never-heard-her.html',
+  },
+  {
+    id: '21',
+    title: 'Mothers to the Wild: The Bishnoi Tradition',
+    category: 'Journalism & Press',
+    image: 'https://i.dailymail.co.uk/i/pix/2016/04/29/09/33A4963600000578-0-image-a-3_1461918586352.jpg',
+    year: '2016',
+    videoUrl: 'https://www.dailymail.co.uk/news/article-3564005/I-breastfeed-deer-like-one-family.html',
+  },
+  {
+    id: '22',
+    title: 'Delhi in a War Zone: The Pandemic Crisis',
+    category: 'Journalism & Press',
+    image: 'https://images.bauerhosting.com/legacy/media/6091/6a80/dcb2/f01c/925d/f2e4/GettyImages-1232684822.jpg?ar=16%3A9&fit=crop&crop=top&auto=format&w=1440&q=80',
+    year: '2021',
+    videoUrl: 'https://graziadaily.co.uk/life/in-the-news/india-covid-latest-news/',
+  },
+  {
+    id: '23',
+    title: 'Voices for Change: Investigative Reporting in India',
+    category: 'Journalism & Press',
+    image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiRSPmcx7TvkrmTVfHTt58Cuekgww95NVzwvtb5YhFERu45CcOagCYlmzNk7FDx96r4K5oidEZGQJGoB_WKhnu1bijyuYPlDhpqzWUUKADRCYU3NBxbMarQeX6tqKo29rhbqQh1vIHAq60/s640/G1.JPG',
+    year: '2023',
+    videoUrl: 'https://www.faisalmagray.com/p/tearsheets.html?m=1',
   },
 ];
 
