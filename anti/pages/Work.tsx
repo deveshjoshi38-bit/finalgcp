@@ -5,7 +5,7 @@ import SectionHeading from '../components/SectionHeading';
 import { WORK_ITEMS } from '../constants';
 import { WorkItem } from '../types';
 
-const CATEGORIES = ['All', 'Corporate Film', 'TVC', 'Music Video', 'Documentary'];
+const CATEGORIES = ['All', 'Corporate Film', 'TVC', 'Music Video', 'Documentary', 'Journalism & Press'];
 
 const Work: React.FC = () => {
   const [filter, setFilter] = useState('All');
@@ -28,6 +28,11 @@ const Work: React.FC = () => {
 
   const handleVideoClick = (work: WorkItem) => {
     if (!work.videoUrl) return;
+    // For journalism items, open link in new tab
+    if (work.category === 'Journalism & Press') {
+      window.open(work.videoUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
     setActiveVideo(work);
   };
 
