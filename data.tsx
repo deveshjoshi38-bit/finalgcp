@@ -1,5 +1,5 @@
 import { ServiceItem, WorkItem, Client, NavItem } from './types';
-import { Film, Mic, Video, Layers, Users, Globe, Tv, MonitorPlay, Briefcase, Camera, Music, PenTool } from 'lucide-react';
+import { Film, Mic, Video, Layers, Users, Globe, Tv, MonitorPlay, Briefcase, Camera, Music, PenTool, Sparkles } from 'lucide-react';
 import React from 'react';
 console.log("data.tsx loading...");
 
@@ -52,6 +52,11 @@ export const SERVICES_DATA: ServiceItem[] = [
     category: 'Management & Strategy',
     items: ['Artist Management', 'Line Production', 'Digital Marketing', 'Public Relations'],
     icon: <Users className="w-6 h-6" />,
+  },
+  {
+    category: 'AI & Innovation',
+    items: ['AI Video Production', 'Generative Avatars', 'Synthetic Media', 'Automated Workflows'],
+    icon: <Sparkles className="w-6 h-6" />,
   },
 ];
 

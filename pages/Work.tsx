@@ -5,7 +5,7 @@ import SectionHeading from '../components/SectionHeading';
 import { WORK_ITEMS } from '../data';
 import { WorkItem } from '../types';
 
-const CATEGORIES = ['All', 'Corporate Film', 'TVC', 'Music Video', 'Documentary', 'Web Series', 'Journalism & Press'];
+const CATEGORIES = ['All', 'Corporate Film', 'TVC', 'Music Video', 'Documentary', 'AI Video Production', 'Web Series', 'Journalism & Press'];
 
 const Work: React.FC = () => {
   const [filter, setFilter] = useState('All');
