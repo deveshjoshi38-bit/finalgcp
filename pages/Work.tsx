@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import { WORK_ITEMS } from '../constants';
+import { WORK_ITEMS } from '../data';
 import { WorkItem } from '../types';
 
-const CATEGORIES = ['All', 'Corporate Film', 'TVC', 'Music Video', 'Documentary', 'Journalism & Press'];
+const CATEGORIES = ['All', 'Corporate Film', 'TVC', 'Music Video', 'Documentary', 'Web Series', 'Journalism & Press'];
 
 const Work: React.FC = () => {
   const [filter, setFilter] = useState('All');

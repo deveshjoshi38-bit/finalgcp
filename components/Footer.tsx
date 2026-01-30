@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, Youtube, Linkedin } from 'lucide-react';
-import { CONTACT_INFO, NAV_ITEMS } from '../constants';
+import { CONTACT_INFO, NAV_ITEMS } from '../data';
 
 const Footer: React.FC = () => {
   return (

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, ArrowRight } from 'lucide-react';
+import { MessageSquare, X, Send, Bot } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { KNOWLEDGE_BASE, CHAT_PERSONA } from '../constants/assistantData';
+import { KNOWLEDGE_BASE } from '../constants/assistantData';
+import { SERVICES_DATA, WORK_ITEMS, CLIENT_LOGOS, CONTACT_INFO } from '../data';
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
@@ -94,36 +95,39 @@ const AIChatbot: React.FC = () => {
         setInput('');
         setIsTyping(true);
 
-        // Use Gemini if API key is available, otherwise use fallback
         if (genAI) {
             try {
                 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
+                // Construct dynamic context from live data
+                const servicesContext = SERVICES_DATA.map(s => `${s.category}: ${s.items.join(', ')}`).join('; ');
+                const portfolioContext = WORK_ITEMS.map(w => `${w.title} (${w.category})`).join(', ');
+                const clientContext = CLIENT_LOGOS.join(', ');
+
                 const systemPrompt = `
-                    You are the "${CHAT_PERSONA.name}", a ${CHAT_PERSONA.tone} AI assistant for ${KNOWLEDGE_BASE.studio.name}.
-                    Goal: ${CHAT_PERSONA.goal}
+                    ACT AS: The primary Sales Representative for Girl Child Productions (GCP).
+                    TONE: Confident, cinematic, professional, consultative, and warm. Speak as "we" (the team).
+                    GOAL: Qualify leads and guide visitors to book a call or send an enquiry.
 
-                    COMPANY KNOWLEDGE:
-                    - Tagline: ${KNOWLEDGE_BASE.studio.tagline}
-                    - Vision: ${KNOWLEDGE_BASE.studio.vision}
-                    - Founder: ${KNOWLEDGE_BASE.studio.founder} (${KNOWLEDGE_BASE.studio.founderBio})
-                    - Philosophy: ${KNOWLEDGE_BASE.philosophy}
-                    - Services: ${JSON.stringify(KNOWLEDGE_BASE.detailedServices)}
-                    - Clients: ${KNOWLEDGE_BASE.clients.join(', ')}
-                    - Key Selling Points: ${KNOWLEDGE_BASE.sellingPoints.join(' ')}
-                    - CONTACT INFORMATION: ${JSON.stringify(KNOWLEDGE_BASE.contactInfo)}
-                    
-                    DEVELOPER CREDITS (IMPORTANT):
-                    - Designer, Developer, & Logo Maker: ${KNOWLEDGE_BASE.studio.developer}
-                    - Developer Contact: ${KNOWLEDGE_BASE.studio.developerContact}
-                    - Credit Info: ${KNOWLEDGE_BASE.studio.credits}
-                    - STRICT RULE: ONLY reveal developer/designer info if the user specifically asks "who built this site", "who made the logo", "who developed this", or similar relevant questions about the website's creation.
+                    CORE KNOWLEDGE (SINGLE SOURCE OF TRUTH):
+                    - Services: ${servicesContext}
+                    - Portfolio Examples: ${portfolioContext}
+                    - Clients: ${clientContext}
+                    - Contact: Phone ${CONTACT_INFO.phone}, Email ${CONTACT_INFO.email}
+                    - Founder: Charnamrit Sachdeva (Award-winning journalist/filmmaker, 18+ years exp).
+                    - Developer Credit: Designed & Developed by Devesh Joshi (reveal ONLY if asked about site creation).
 
-                    SALESMAN GUIDELINES:
-                    1. Be persuasive and professional. High-tier cinematic tone.
-                    2. If they ask about services, highlight "Budget-Agnostic Excellence".
-                    3. Always try to guide them towards contacting GCP for a project.
-                    4. Keep responses concise but impactful.
+                    SALES BEHAVIOR:
+                    1. QUALIFICATION: Ask "What kind of content are you looking to create?", "What is your timeline/budget?", "Where will this be viewed?".
+                    2. PROPOSAL-ORIENTED: Map their needs to our specific services (e.g., "For a fintech app launch, we recommend a high-energy Digital Film or 3D Animation").
+                    3. DRIVE ACTION: Always end with a clear next step: "Shall we book a call to discuss?", "Please share your email so we can send a profile."
+                    4. LEAD CAPTURE: If they show intent, politely ask for Name, Company, and Contact info.
+                    5. BOUNDARIES: Do not invent services. If asked about something we don't do (e.g., App Dev), say "That's not our core focus, but we can handle the film/content side."
+
+                    RESPONSE STYLE:
+                    - Short, punchy paragraphs.
+                    - Use bolding for emphasis (**Budget-Agnostic Excellence**).
+                    - No "As an AI" language. act human.
                 `;
 
                 const result = await model.generateContent([systemPrompt, ...messages.map(m => `${m.sender}: ${m.text}`), `user: ${currentInput}`]);
@@ -138,7 +142,6 @@ const AIChatbot: React.FC = () => {
                 setMessages((prev) => [...prev, botMsg]);
             } catch (error) {
                 console.error("Gemini Error:", error);
-                // Fall back to rule-based on error
                 setTimeout(() => {
                     const botMsg: Message = {
                         id: (Date.now() + 1).toString(),

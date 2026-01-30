@@ -153,11 +153,14 @@ const Home: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <ParallaxImage
-                src="/studio-image.jpg"
-                alt="The Studio"
-                aspectRatio="aspect-[4/5]"
-              />
+              <div className="bg-gradient-to-br from-gray-300 via-gray-100 to-gray-300 p-2 shadow-2xl border border-gray-400">
+                <ParallaxImage
+                  src="/studio-collage.jpg"
+                  alt="The Studio"
+                  aspectRatio="aspect-[4/5]"
+                  imgClassName="filter grayscale contrast-125 brightness-90"
+                />
+              </div>
             </motion.div>
           </div>
         </div>

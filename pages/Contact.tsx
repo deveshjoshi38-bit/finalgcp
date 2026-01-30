@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO } from '../data';
 import { Mail, Phone, MapPin, ArrowRight, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {

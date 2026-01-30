@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import SectionHeading from '../components/SectionHeading';
-import { SERVICES_DATA } from '../constants';
+import { SERVICES_DATA } from '../data';
 
 const Services: React.FC = () => {
   return (
