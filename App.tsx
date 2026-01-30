@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { AudioProvider } from './contexts/AudioContext';
 import Layout from './components/Layout';
 import SmoothScroll from './components/SmoothScroll';
@@ -66,6 +67,7 @@ function App() {
             </Layout>
           </SmoothScroll>
         </HashRouter>
+        <SpeedInsights />
       </AudioProvider>
     </ErrorBoundary>
   );
